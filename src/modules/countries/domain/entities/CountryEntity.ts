@@ -1,5 +1,6 @@
 export interface CountryEntity {
-  id:string;
-  description:string | null;
-  name:string;
+  id:number;
+  name: string;
+  iso: string;
+  url_flag: string;
 }

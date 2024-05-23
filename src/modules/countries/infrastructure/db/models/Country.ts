@@ -5,26 +5,32 @@ import { ICountry } from '../interfaces/ICountry';
 
 @injectable()
 export class Country extends Model<ICountry, ICountry> implements ICountry {
-  public id!: string;
-
-  public description!: string;
+  public id!: number;
 
   public name!: string;
+
+  public iso!: string;
+
+  public url_flag!: string;
 }
 
 Country.init(
   {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
     },
-    description: {
+    iso: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    url_flag: {
       type: DataTypes.STRING,
       allowNull: false,
     },
