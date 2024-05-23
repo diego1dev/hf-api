@@ -1,5 +1,5 @@
 export interface PlanStatusEntity {
-  id:string;
+  id:number;
   description:string | null;
   name:string;
 }

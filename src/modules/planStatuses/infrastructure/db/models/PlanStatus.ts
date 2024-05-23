@@ -5,7 +5,7 @@ import { IPlanStatus } from '../interfaces/IPlanStatus';
 
 @injectable()
 export class PlanStatus extends Model<IPlanStatus, IPlanStatus> implements IPlanStatus {
-  public id!: string;
+  public id!: number;
 
   public description!: string;
 
@@ -15,7 +15,7 @@ export class PlanStatus extends Model<IPlanStatus, IPlanStatus> implements IPlan
 PlanStatus.init(
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
