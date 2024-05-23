@@ -7,9 +7,7 @@ import { IConsumption } from '../interfaces/IConsumption';
 export class Consumption extends Model<IConsumption, IConsumption> implements IConsumption {
   public id!: string;
 
-  public description!: string;
-
-  public name!: string;
+  public total!: number;
 }
 
 Consumption.init(
@@ -20,12 +18,8 @@ Consumption.init(
       primaryKey: true,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    name: {
-      type: DataTypes.STRING,
+    total: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
