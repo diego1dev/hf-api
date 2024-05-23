@@ -16,8 +16,8 @@ PlanStatus.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
     },
     description: {
