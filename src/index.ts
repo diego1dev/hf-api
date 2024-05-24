@@ -8,6 +8,10 @@ import { syncModels } from 'modules/common/infrastructure/db';
 import { UserRouter } from 'modules/users/routers';
 import { RoleRouter } from 'modules/roles/routers';
 import { FeatureRouter } from 'modules/features/routers';
+import { PlanStatusRouter } from 'modules/planStatuses/routers';
+import { PlanRouter } from 'modules/plans/routers';
+import { ConsumptionRouter } from 'modules/consumptions/routers';
+import { CountryRouter } from 'modules/countries/routers';
 
 dotenv.config();
 
@@ -19,6 +23,10 @@ async function app() {
     [
       FeatureRouter,
       RoleRouter,
+      CountryRouter,
+      PlanStatusRouter,
+      ConsumptionRouter,
+      PlanRouter,
       UserRouter,
       AuthRouter,
     ],
