@@ -22,6 +22,17 @@ jobs:
           node-version: '20.x'
 
       - name: npm install, build, and test
+        env:
+          PREFIX: ${{ vars.PREFIX }}
+          PORT: ${{ vars.PORT }}
+          SQL_USER: ${{ secrets.SQL_USER }}
+          SQL_PORT: ${{ vars.SQL_PORT }}
+          SQL_PASS: ${{ secrets.SQL_PASS }}
+          SQL_DB: ${{ vars.SQL_DB }}
+          SQL_HOST: ${{ vars.SQL_HOST }}
+          JWT_SECRET: ${{ vars.JWT_SECRET }}
+          REFRESH_SECRET: ${{ vars.REFRESH_SECRET }}
+          EXPIRE_TOKEN: ${{ vars.EXPIRE_TOKEN }}
         run: |
           npm install
           npm run build --if-present
@@ -42,8 +53,6 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
