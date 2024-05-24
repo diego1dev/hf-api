@@ -4,6 +4,7 @@ export const TYPESDEPENDENCIES = {
   DBRepository: 'UserDBRepository',
   Service: 'UserService',
   Model: 'UserModel',
+  UserPlanModel: 'UserPlanModel',
 };
 
 export default TYPESDEPENDENCIES;

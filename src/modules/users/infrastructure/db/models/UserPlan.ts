@@ -7,6 +7,7 @@ import { sequelize } from 'modules/common/infrastructure/db';
 import { Consumption } from 'modules/consumptions/infrastructure/db/models';
 import { PlanStatus } from 'modules/planStatuses/infrastructure/db/models';
 import { Country } from 'modules/countries/infrastructure/db/models';
+import { Plan } from 'modules/plans/infrastructure/db/models';
 import { IUserPlan } from '../interfaces/IUserPlan';
 
 @injectable()
@@ -68,6 +69,8 @@ UserPlan.init(
 UserPlan.belongsTo(Consumption, { foreignKey: 'ConsumptionId' });
 UserPlan.belongsTo(PlanStatus, { foreignKey: 'StatusId' });
 UserPlan.belongsTo(Country, { foreignKey: 'CountryId' });
+UserPlan.belongsTo(Plan);
+Plan.hasMany(UserPlan);
 
 export type TypeUserPlanModel = typeof UserPlan;
 export default UserPlan;

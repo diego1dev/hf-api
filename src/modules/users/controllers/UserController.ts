@@ -31,6 +31,15 @@ export class UserController {
     }
   }
 
+  async getPlans(inputData:IReqData<IGetUserByID>) {
+    try {
+      const data = await this.useCase.getPlans(inputData.data.id, inputData.user);
+      return Result.ok({ data, message: 'OK' });
+    } catch (error) {
+      return Result.failure(error);
+    }
+  }
+
   async getById(inputData:IReqData<IGetUserByID>) {
     try {
       const data = await this.useCase.getById(inputData.data.id, inputData.user);

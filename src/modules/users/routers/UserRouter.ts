@@ -35,6 +35,12 @@ export class UserRouter implements IModule {
       event: this.controller.getById.bind(this.controller),
     },
     {
+      method: HTTPMETHOD.GET,
+      handler: isAuthenticate,
+      url: '/:id/plans',
+      event: this.controller.getPlans.bind(this.controller),
+    },
+    {
       method: HTTPMETHOD.PUT,
       handler: isAuthenticate,
       url: '/:id',

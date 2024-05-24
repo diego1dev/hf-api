@@ -36,6 +36,8 @@ export class User extends Model<IUser, IUser> implements IUser {
   public removeFeatures!: BelongsToManyRemoveAssociationsMixin<Feature, IFeatureID>;
 
   public getFeatures!: BelongsToManyGetAssociationsMixin<Feature>;
+
+  public getPlans!: BelongsToManyGetAssociationsMixin<Plan>;
 }
 
 User.init(
@@ -72,6 +74,7 @@ User.belongsToMany(Role, { through: 'UserRole' });
 
 Feature.belongsToMany(User, { through: 'UserFeature' });
 User.belongsToMany(Feature, { through: 'UserFeature' });
+User.hasMany(UserPlan);
 
 User.belongsToMany(Plan, { through: UserPlan });
 

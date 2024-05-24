@@ -7,9 +7,13 @@ import { UserRepository } from '../domain/repositories/UserRepository';
 import { TypeUserModel, User } from '../infrastructure/db/models/User';
 import { IUserService } from '../domain/interfaces/IUserService';
 import { UserService } from '../domain/services/UserService';
+import UserPlan, { TypeUserPlanModel } from '../infrastructure/db/models/UserPlan';
 
 export const createDependencies = (): void => {
   GLOBAL_CONTAINER.bind<TypeUserModel>(TYPESDEPENDENCIES.Model).toConstantValue(User);
+  GLOBAL_CONTAINER.bind<TypeUserPlanModel>(TYPESDEPENDENCIES.UserPlanModel)
+    .toConstantValue(UserPlan);
+
   GLOBAL_CONTAINER.bind<UserRepository>(TYPESDEPENDENCIES.DBRepository)
     .to(UserDAO)
     .inSingletonScope();

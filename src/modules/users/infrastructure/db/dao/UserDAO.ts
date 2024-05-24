@@ -5,12 +5,18 @@ import { TYPESDEPENDENCIES } from 'modules/users/dependencies/TypesDependencies'
 import { FindOptions } from 'sequelize';
 import { Feature } from 'modules/features/infrastructure/db/models';
 import { Role } from 'modules/roles/infrastructure/db/models';
+import { Country } from 'modules/countries/infrastructure/db/models';
+import { PlanStatus } from 'modules/planStatuses/infrastructure/db/models';
+import { Consumption } from 'modules/consumptions/infrastructure/db/models';
 import { TypeUserModel, User } from '../models';
 import { IUpdateUser, IUser, IUserID } from '../interfaces/IUser';
+import UserPlan, { TypeUserPlanModel } from '../models/UserPlan';
 
 @injectable()
 export class UserDAO implements UserRepository {
   private dbModel = GLOBAL_CONTAINER.get<TypeUserModel>(TYPESDEPENDENCIES.Model);
+
+  private dbUsrPlanModel = GLOBAL_CONTAINER.get<TypeUserPlanModel>(TYPESDEPENDENCIES.UserPlanModel);
 
   async create(data:IUser): Promise<void> {
     await this.dbModel.create(data);
@@ -18,6 +24,13 @@ export class UserDAO implements UserRepository {
 
   async getById(id: IUserID, options?:Omit<FindOptions<IUser>, 'where'>): Promise<User | null> {
     return this.dbModel.findByPk(id, options);
+  }
+
+  async getPlans(UserId: IUserID): Promise<UserPlan[]> {
+    return this.dbUsrPlanModel.findAll({
+      where: { UserId },
+      include: [Country, PlanStatus, Consumption],
+    });
   }
 
   async getByIdComplete(id: IUserID): Promise<User | null> {

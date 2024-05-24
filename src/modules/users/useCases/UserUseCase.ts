@@ -16,6 +16,7 @@ import { UserRepository } from '../domain/repositories/UserRepository';
 import { IUserService } from '../domain/interfaces/IUserService';
 import { IFeatureAssign, IRoleAssign, IUpdateUser } from '../domain/interfaces/IUser';
 import { Permission, UserEntity } from '../domain/entities';
+import UserPlan from '../infrastructure/db/models/UserPlan';
 
 @injectable()
 export class UserUseCase {
@@ -43,6 +44,12 @@ export class UserUseCase {
   async getAll(logUser: UserEntity): Promise<IUser[]> {
     this.featureService.hasFeatureAccessThrowError(logUser, Permission.READ);
     const result = await this.repository.getAll();
+    return result;
+  }
+
+  async getPlans(id: IUserID, logUser: UserEntity): Promise<UserPlan[]> {
+    this.featureService.hasFeatureAccessThrowError(logUser, Permission.READ);
+    const result = await this.repository.getPlans(id);
     return result;
   }
 
