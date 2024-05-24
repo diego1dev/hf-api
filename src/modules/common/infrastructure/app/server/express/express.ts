@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import express, { RequestHandler, Router } from 'express';
+import cors from 'cors';
 import { ENV } from 'modules/common/utils/env';
 import { PrettyLogger } from 'modules/common/infrastructure/logger';
 import {
@@ -15,6 +16,7 @@ export class ExpressServer implements IHttpServer {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.json());
     this.app.use(passport.initialize());
+    this.app.use(cors());
   }
 
   addModule = async (newModule:IModule) => {
