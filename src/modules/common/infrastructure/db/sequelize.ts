@@ -10,6 +10,12 @@ export const sequelize = new Sequelize({
   username: ENV.SQL_USER,
   password: ENV.SQL_PASS,
   logging: (msg) => PrettyLogger.info(msg),
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // This line can be necessary for certain configurations.
+    },
+  },
 });
 
 export const syncModels = async () => {
