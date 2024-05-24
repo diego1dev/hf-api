@@ -55,7 +55,7 @@ UserPlan.init(
     },
     dateEnd: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
