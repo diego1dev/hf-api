@@ -22,17 +22,6 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        env:
-          PREFIX: ${{ vars.PREFIX }}
-          PORT: ${{ vars.PORT }}
-          SQL_USER: ${{ secrets.SQL_USER }}
-          SQL_PORT: ${{ vars.SQL_PORT }}
-          SQL_PASS: ${{ secrets.SQL_PASS }}
-          SQL_DB: ${{ vars.SQL_DB }}
-          SQL_HOST: ${{ vars.SQL_HOST }}
-          JWT_SECRET: ${{ vars.JWT_SECRET }}
-          REFRESH_SECRET: ${{ vars.REFRESH_SECRET }}
-          EXPIRE_TOKEN: ${{ vars.EXPIRE_TOKEN }}
         run: |
           npm install
           npm run build --if-present
@@ -68,9 +57,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_57588DCDA00C4392A266772C0A1081B6 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B4E33F70DC78443BA3349C2E7A17E3A7 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_41B84A5E770C44F688A2622FF3A62A8B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00F7D4DD18AD4CC685AACBA2F7F38865 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8A2F45A870604D10B16486FCA093D5A1 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_ED09D3E786754F55A1EB46ACD560F222 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
