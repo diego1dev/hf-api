@@ -5,6 +5,7 @@ export const TYPESDEPENDENCIES = {
   Service: 'UserService',
   Model: 'UserModel',
   UserPlanModel: 'UserPlanModel',
+  UserPlanAdapter: 'UserPlanAdapter',
 };
 
 export default TYPESDEPENDENCIES;

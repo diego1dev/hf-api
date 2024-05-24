@@ -8,6 +8,7 @@ import { Role } from 'modules/roles/infrastructure/db/models';
 import { Country } from 'modules/countries/infrastructure/db/models';
 import { PlanStatus } from 'modules/planStatuses/infrastructure/db/models';
 import { Consumption } from 'modules/consumptions/infrastructure/db/models';
+import { Plan } from 'modules/plans/infrastructure/db/models';
 import { TypeUserModel, User } from '../models';
 import { IUpdateUser, IUser, IUserID } from '../interfaces/IUser';
 import UserPlan, { TypeUserPlanModel } from '../models/UserPlan';
@@ -29,7 +30,7 @@ export class UserDAO implements UserRepository {
   async getPlans(UserId: IUserID): Promise<UserPlan[]> {
     return this.dbUsrPlanModel.findAll({
       where: { UserId },
-      include: [Country, PlanStatus, Consumption],
+      include: [Country, PlanStatus, Consumption, Plan],
     });
   }
 

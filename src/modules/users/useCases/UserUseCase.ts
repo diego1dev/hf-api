@@ -14,9 +14,11 @@ import { IUser, IUserID } from '../infrastructure/db/interfaces/IUser';
 import { TYPESDEPENDENCIES } from '../dependencies/TypesDependencies';
 import { UserRepository } from '../domain/repositories/UserRepository';
 import { IUserService } from '../domain/interfaces/IUserService';
-import { IFeatureAssign, IRoleAssign, IUpdateUser } from '../domain/interfaces/IUser';
+import {
+  IFeatureAssign, IPlansByUser, IRoleAssign, IUpdateUser,
+} from '../domain/interfaces/IUser';
 import { Permission, UserEntity } from '../domain/entities';
-import UserPlan from '../infrastructure/db/models/UserPlan';
+import { IUserPlansAdapter } from '../domain/interfaces/IUserPlansAdapter';
 
 @injectable()
 export class UserUseCase {
@@ -25,6 +27,10 @@ export class UserUseCase {
   private RolesRepo = GLOBAL_CONTAINER.get<RoleRepository>(TYPESDEPENDENCIES_ROLES.DBRepository);
 
   private roleService = GLOBAL_CONTAINER.get<IRoleService>(TYPESDEPENDENCIES_ROLES.Service);
+
+  private userPlanAdapter = GLOBAL_CONTAINER.get<IUserPlansAdapter>(
+    TYPESDEPENDENCIES.UserPlanAdapter,
+  );
 
   private userService = GLOBAL_CONTAINER.get<IUserService>(TYPESDEPENDENCIES.Service);
 
@@ -47,10 +53,10 @@ export class UserUseCase {
     return result;
   }
 
-  async getPlans(id: IUserID, logUser: UserEntity): Promise<UserPlan[]> {
+  async getPlans(id: IUserID, logUser: UserEntity): Promise<IPlansByUser[]> {
     this.featureService.hasFeatureAccessThrowError(logUser, Permission.READ);
     const result = await this.repository.getPlans(id);
-    return result;
+    return this.userPlanAdapter.userPlansToPlansByUser(result);
   }
 
   async getById(id: IUserID, logUser: UserEntity): Promise<IUser | null> {
