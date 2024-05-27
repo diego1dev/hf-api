@@ -78,7 +78,7 @@ jobs:
           package: './release'
 
       - name: Verify deployment status
-        run: az webapp log tail --name hf-dev-diego --resource-group YOUR_RESOURCE_GROUP --subscription YOUR_SUBSCRIPTION_ID
+        run: az webapp log tail --name hf-dev-diego --resource-group HF-MYO --subscription cfdd491a-b301-4050-b6da-2ca76a075421
 
       - name: Clean up
         run: rm -rf release release.zip
