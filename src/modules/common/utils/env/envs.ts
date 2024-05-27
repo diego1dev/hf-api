@@ -15,7 +15,7 @@ export const ENV = {
   EXPIRE_TOKEN: process.env.EXPIRE_TOKEN || '1h',
 };
 
-console.log(process.env.PREFIX);
+console.log('PREFIX-LOG', process.env.PREFIX);
 
 // validateEnvs(ENV);
 
