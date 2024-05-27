@@ -18,7 +18,7 @@ dotenv.config();
 async function app() {
   syncModels();
   const modulesFactory = new ServerFactory();
-  const server = modulesFactory.createHttpServer(TYPESSERVER.FASTIFY);
+  const server = modulesFactory.createHttpServer(TYPESSERVER.EXPRESS);
   modulesFactory.initModules(
     [
       FeatureRouter,
