@@ -67,7 +67,7 @@ export class FastifyServer implements IHttpServer {
   };
 
   start(port: number): void {
-    this.app.listen({ port }, (err, address) => {
+    this.app.listen({ port, host: '0.0.0.0' }, (err, address) => {
       if (err) {
         this.app.log.fatal(err);
         process.exit(1);
