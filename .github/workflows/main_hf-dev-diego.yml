@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - hf-dev-diego
 
 on:
@@ -39,7 +36,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip -r release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -54,7 +51,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -63,8 +60,8 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
+        run: unzip release.zip -d release
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -78,5 +75,10 @@ jobs:
         with:
           app-name: 'hf-dev-diego'
           slot-name: 'Production'
-          package: .
-          
+          package: './release'
+
+      - name: Verify deployment status
+        run: az webapp log tail --name hf-dev-diego --resource-group YOUR_RESOURCE_GROUP --subscription YOUR_SUBSCRIPTION_ID
+
+      - name: Clean up
+        run: rm -rf release release.zip
