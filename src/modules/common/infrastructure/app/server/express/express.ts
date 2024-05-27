@@ -50,7 +50,7 @@ export class ExpressServer implements IHttpServer {
 
   start(port: number): void {
     try {
-      this.app.listen(port, () => {
+      this.app.listen(port, '0.0.0.0', () => {
         PrettyLogger.info(`Express server running on port ${port}`);
       });
     } catch (err) {
