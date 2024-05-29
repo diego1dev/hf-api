@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - prueba-tecnica-hf-api
+name: Build and deploy Node.js app to Azure Web App - hf-dev-diego
 
 on:
   push:
@@ -43,8 +43,8 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-        id-token: write # This is required for requesting the JWT
-  
+      id-token: write #This is required for requesting the JWT
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
@@ -57,10 +57,10 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B06673C5A7F3429E9991E39B56AA3C36 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_46F683BE35404BF896C86F84DBF88218 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EEA293C0F7A841238FA642248234371F }}
-      
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5922AF62AAA2471F831CB37DA2FC7381 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C7607A17514A4384ABBF905AD9F27E1F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_334346A888CC4ED098DEB6CE1D491678 }}
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -68,5 +68,4 @@ jobs:
           app-name: 'hf-dev-diego'
           slot-name: 'Production'
           package: .
-      - name: Clean up
-        run: rm -rf release release.zip
+          
