@@ -9,6 +9,7 @@ import { IJWT } from '../entities/IJWT';
 @injectable()
 export class AuthService implements IAuthService {
   isValidPassword(password:string, passwordHash:string):Promise<boolean> {
+    console.log('COMPARE', password, passwordHash);
     return bcrypt.compare(password, passwordHash);
   }
 
