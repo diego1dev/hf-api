@@ -1,4 +1,7 @@
-name: Build and deploy Node.js app to Azure Web App - hf-dev-diego
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - prueba-tecnica-hf-api
 
 on:
   push:
@@ -19,24 +22,13 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        env:
-          PREFIX: ${{ env.PREFIX }}
-          PORT: ${{ env.PORT }}
-          SQL_USER: ${{ env.SQL_USER }}
-          SQL_PORT: ${{ env.SQL_PORT }}
-          SQL_PASS: ${{ env.SQL_PASS }}
-          SQL_DB: ${{ env.SQL_DB }}
-          SQL_HOST: ${{ env.SQL_HOST }}
-          EXPIRE_TOKEN: ${{ env.EXPIRE_TOKEN }}
-          JWT_SECRET: ${{ env.JWT_SECRET }}
-          REFRESH_SECRET: ${{ env.REFRESH_SECRET }}
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip .
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -51,8 +43,8 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # This is required for requesting the JWT
-
+        id-token: write # This is required for requesting the JWT
+  
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
@@ -60,21 +52,21 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip -d release
-
+        run: unzip release.zip
+      
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B06673C5A7F3429E9991E39B56AA3C36 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_46F683BE35404BF896C86F84DBF88218 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EEA293C0F7A841238FA642248234371F }}
-
+      
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'hf-dev-diego'
           slot-name: 'Production'
-          package: './release'
+          package: .
       - name: Clean up
         run: rm -rf release release.zip
