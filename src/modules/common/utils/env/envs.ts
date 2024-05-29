@@ -5,7 +5,7 @@ dotenv.config();
 
 export const ENV = {
   PREFIX: process.env.PREFIX || '/api/v1',
-  PORT: '8080',
+  PORT: '8181',
   SQL_HOST: process.env.SQL_HOST || 'holafly.postgres.database.azure.com',
   SQL_PORT: process.env.SQL_PORT || '5432',
   SQL_DB: process.env.SQL_DB || 'postgres',
