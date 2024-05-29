@@ -13,17 +13,17 @@ import { IRole } from '../interfaces/IRole';
 
 @injectable()
 export class Role extends Model<IRole, IRole> implements IRole {
-  public id!: number;
+  declare id: number;
 
-  public name!: string;
+  declare name: string;
 
-  public description!: string;
+  declare description: string;
 
-  public addFeatures!: BelongsToManyAddAssociationsMixin<Feature, IFeatureID>;
+  declare addFeatures: BelongsToManyAddAssociationsMixin<Feature, IFeatureID>;
 
-  public removeFeatures!: BelongsToManyRemoveAssociationsMixin<Feature, IFeatureID>;
+  declare removeFeatures: BelongsToManyRemoveAssociationsMixin<Feature, IFeatureID>;
 
-  public getFeatures!: BelongsToManyGetAssociationsMixin<Feature>;
+  declare getFeatures: BelongsToManyGetAssociationsMixin<Feature>;
 }
 
 Role.init(
