@@ -22,6 +22,18 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
+        env:
+          PREFIX: ${{ vars.PREFIX }}
+          PORT: ${{ vars.PORT }}
+          SQL_USER: ${{ vars.SQL_USER }}
+          SQL_PORT: ${{ vars.SQL_PORT }}
+          SQL_PASS: ${{ vars.SQL_PASS }}
+          SQL_DB: ${{ vars.SQL_DB }}
+          SQL_HOST: ${{ vars.SQL_HOST }}
+          EXPIRE_TOKEN: ${{ vars.EXPIRE_TOKEN }}
+          JWT_SECRET: ${{ vars.JWT_SECRET }}
+          REFRESH_SECRET: ${{ vars.REFRESH_SECRET }}
+      
         run: |
           npm install
           npm run build --if-present
@@ -68,4 +80,6 @@ jobs:
           app-name: 'hf-dev-diego'
           slot-name: 'Production'
           package: .
+      - name: Clean up
+        run: rm -rf release release.zip
           

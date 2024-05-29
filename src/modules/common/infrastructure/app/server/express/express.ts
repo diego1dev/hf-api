@@ -68,6 +68,9 @@ export class ExpressServer implements IHttpServer {
         ...req.query,
       },
     };
+    console.log('-----------------');
+    console.log(request);
+    console.log('-----------------');
     const result = await endpoint.event(request);
     reply.status(result.status).type('json').send(JSON.stringify(result.response));
   };
