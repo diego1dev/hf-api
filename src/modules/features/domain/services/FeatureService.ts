@@ -14,15 +14,7 @@ export class FeatureService implements IFeatureService {
   }
 
   hasFeatureAccess(user:UserEntity, feature:string):boolean {
-    console.log('user.Roles');
-    console.log(user.Roles);
-    console.log('---------', SUPERUSER_ROLE_ID);
-    if (user.Roles?.some((role) => {
-      console.log(role.id, role.id === SUPERUSER_ROLE_ID);
-
-      return role.id === SUPERUSER_ROLE_ID;
-    })) return true;
-    console.log('NO ES SUPER USUARIO', user.Roles?.some((role) => role.id === SUPERUSER_ROLE_ID));
+    if (user.Roles?.some((role) => role.id === SUPERUSER_ROLE_ID)) return true;
     if ((user.Features || []).some((ft) => ft.name === feature)) return true;
     if ((user.Roles?.some((role) => role.Features?.some((ft) => ft.name === feature)))) return true;
     return false;
