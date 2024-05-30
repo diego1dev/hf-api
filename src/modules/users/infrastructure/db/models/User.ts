@@ -17,27 +17,27 @@ import UserPlan from './UserPlan';
 
 @injectable()
 export class User extends Model<IUser, IUser> implements IUser {
-  declare email!: string;
+  declare email: string;
 
-  declare id!: string;
+  declare id: string;
 
-  declare name!: string;
+  declare name: string;
 
-  declare password!: string;
+  declare password: string;
 
-  declare addRoles!: BelongsToManyAddAssociationsMixin<Role, IRoleID>;
+  declare addRoles: BelongsToManyAddAssociationsMixin<Role, IRoleID>;
 
-  declare removeRoles!: BelongsToManyRemoveAssociationsMixin<Role, IRoleID>;
+  declare removeRoles: BelongsToManyRemoveAssociationsMixin<Role, IRoleID>;
 
-  declare getRoles!: BelongsToManyGetAssociationsMixin<Role>;
+  declare getRoles: BelongsToManyGetAssociationsMixin<Role>;
 
-  declare addFeatures!: BelongsToManyAddAssociationsMixin<Feature, IFeatureID>;
+  declare addFeatures: BelongsToManyAddAssociationsMixin<Feature, IFeatureID>;
 
-  declare removeFeatures!: BelongsToManyRemoveAssociationsMixin<Feature, IFeatureID>;
+  declare removeFeatures: BelongsToManyRemoveAssociationsMixin<Feature, IFeatureID>;
 
-  declare getFeatures!: BelongsToManyGetAssociationsMixin<Feature>;
+  declare getFeatures: BelongsToManyGetAssociationsMixin<Feature>;
 
-  declare getPlans!: BelongsToManyGetAssociationsMixin<Plan>;
+  declare getPlans: BelongsToManyGetAssociationsMixin<Plan>;
 }
 
 User.init(

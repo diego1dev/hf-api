@@ -5,13 +5,13 @@ import { ICountry } from '../interfaces/ICountry';
 
 @injectable()
 export class Country extends Model<ICountry, ICountry> implements ICountry {
-  declare id!: number;
+  declare id: number;
 
-  declare name!: string;
+  declare name: string;
 
-  declare iso!: string;
+  declare iso: string;
 
-  declare url_flag!: string;
+  declare url_flag: string;
 }
 
 Country.init(

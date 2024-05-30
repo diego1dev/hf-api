@@ -5,11 +5,11 @@ import { IFeature } from '../interfaces/IFeature';
 
 @injectable()
 export class Feature extends Model<IFeature, IFeature> implements IFeature {
-  declare id!: number;
+  declare id: number;
 
-  declare name!: string;
+  declare name: string;
 
-  declare description!: string;
+  declare description: string;
 }
 
 Feature.init(
