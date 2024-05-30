@@ -5,9 +5,9 @@ import { IConsumption } from '../interfaces/IConsumption';
 
 @injectable()
 export class Consumption extends Model<IConsumption, IConsumption> implements IConsumption {
-  public id!: string;
+  declare id!: string;
 
-  public total!: number;
+  declare total!: number;
 }
 
 Consumption.init(

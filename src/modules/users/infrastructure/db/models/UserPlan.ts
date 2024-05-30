@@ -12,19 +12,19 @@ import { IUserPlan } from '../interfaces/IUserPlan';
 
 @injectable()
 class UserPlan extends Model<IUserPlan, IUserPlan> {
-  public UserId!: string;
+  declare UserId!: string;
 
-  public PlanId!: string;
+  declare PlanId!: string;
 
-  public ConsumptionId!: string;
+  declare ConsumptionId!: string;
 
-  public StatusId!: number;
+  declare StatusId!: number;
 
-  public CountryId!: number;
+  declare CountryId!: number;
 
-  public dateStart!: string;
+  declare dateStart!: string;
 
-  public dateEnd!: string;
+  declare dateEnd!: string;
 }
 
 UserPlan.init(

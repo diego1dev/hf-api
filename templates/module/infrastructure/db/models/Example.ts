@@ -5,11 +5,11 @@ import { IExample } from '../interfaces/IExample';
 
 @injectable()
 export class Example extends Model<IExample, IExample> implements IExample {
-  public id!: string;
+  declare id!: string;
 
-  public description!: string;
+  declare description!: string;
 
-  public name!: string;
+  declare name!: string;
 }
 
 Example.init(

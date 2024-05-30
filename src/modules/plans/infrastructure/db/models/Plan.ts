@@ -5,11 +5,11 @@ import { IPlan } from '../interfaces/IPlan';
 
 @injectable()
 export class Plan extends Model<IPlan, IPlan> implements IPlan {
-  public id!: string;
+  declare id!: string;
 
-  public description!: string;
+  declare description!: string;
 
-  public name!: string;
+  declare name!: string;
 }
 
 Plan.init(
